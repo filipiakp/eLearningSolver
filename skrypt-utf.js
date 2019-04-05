@@ -1,4 +1,4 @@
-﻿var regex = /\*[\/\\\(\)\_\dA-Za-z\&;.\<\>]+[ \/\\\(\)\_\dA-Za-z\&;,.\<\>]{0,}(: [a-z]+\?)?\*/g;
+﻿var regex = /\*[-\/\\\(\)\_\dA-Za-z\&;.\<\>]+[ \/\\\(\)\_\dA-Za-z\&;,.\<\>!]*(: [a-z]+\?)?\*/g;//jakis komentarz
 var s = -1;//script counter
 var isH5PScript = false;
 do{
@@ -27,10 +27,11 @@ for(var i=0; i<answers.length; i++){
 h5pdocument = document.getElementsByClassName("h5p-iframe-wrapper")[0].childNodes[0].contentWindow.document;
 slides = h5pdocument.getElementsByClassName("h5p-progressbar-part");
 var slide = 0; 
-var j = 0;
+var j = 0;//actual answer
+var k = 0;//actual input
 while(j<answersArray.length){
 	inputs = h5pdocument.getElementsByClassName("h5p-text-input");
-	for(var k=0;k<inputs.length;k++){
+	for( ;k<inputs.length;k++){
 		inputs[k].value = answersArray[j];
 		inputs[k].click();
 		j++;
